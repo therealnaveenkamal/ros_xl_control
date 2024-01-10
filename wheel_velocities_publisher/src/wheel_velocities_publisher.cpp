@@ -12,6 +12,7 @@ int main(int argc, char *argv[]) {
     rclcpp::Rate rate(1);
 
     while (rclcpp::ok()) {
+        std::this_thread::sleep_for(std::chrono::seconds(3));
         auto forward = std_msgs::msg::Float32MultiArray();
         forward.data = {1.0, 1.0, 1.0, 1.0};
         publisher->publish(forward);
