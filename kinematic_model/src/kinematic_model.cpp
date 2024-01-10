@@ -13,7 +13,7 @@ public:
                 calculateTwist(msg);
             });
         cmd_vel_publisher_ = create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
-        timer_ = create_wall_timer(std::chrono::milliseconds(100), [this]() {
+        timer_ = create_wall_timer(std::chrono::milliseconds(10), [this]() {
             publishTwist();
         });
     }
@@ -49,12 +49,6 @@ private:
         wbz = x(0);
         vbx = x(1);
         vby = x(2);
-
-        // Print the results
-        RCLCPP_INFO(get_logger(), "u = [%f, %f, %f, %f]", u1, u2, u3, u4);
-        RCLCPP_INFO(get_logger(), "wbz = %f", wbz);
-        RCLCPP_INFO(get_logger(), "vbx = %f", vbx);
-        RCLCPP_INFO(get_logger(), "vby = %f", vby);     
     }
 
     void publishTwist() {
